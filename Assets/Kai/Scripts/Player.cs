@@ -4,17 +4,28 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
   [SerializeField]
-  float speed = 15.0f;
+  AnimationCurve movementCurve;
 
   [SerializeField]
-  float rotate = 10.0f;
+  float speed = 15f;
+
+  [SerializeField]
+  float rotate = 10f;
+
+  [SerializeField]
+  float dashRange = 2f;
+
+  Vector3 lastMoveDir = Vector2.zero;
 
   void Update() {
+    Dash();
     Move();
     Look();
   }
 
   void Move() {
+    lastMoveDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+
     transform.position += new Vector3(
       Input.GetAxis("Horizontal") * speed * Time.deltaTime,
       Input.GetAxis("Vertical") * speed * Time.deltaTime
@@ -28,5 +39,11 @@ public class Player : MonoBehaviour {
     Quaternion q = Quaternion.AngleAxis(angle + 180f, Vector3.forward);
 
     transform.rotation = Quaternion.Slerp(transform.rotation, q, rotate * Time.deltaTime);
+  }
+
+  void Dash() {
+    if (Input.GetButtonDown("Dash")) {
+      transform.position += lastMoveDir * dashRange;
+    }
   }
 }
