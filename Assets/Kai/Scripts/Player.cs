@@ -24,6 +24,7 @@ public class Player : MonoBehaviour {
     Move();
     Look();
     Dash();
+    Fire();
   }
 
   void Move() {
@@ -52,7 +53,13 @@ public class Player : MonoBehaviour {
   }
 
   void Fire() {
-    onFirePressed.Invoke(transform.position);
+    if (Input.GetButtonDown("Fire")) {
+      Vector3 mousePos = Input.mousePosition;
+      Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePos);
+      worldPosition.z = 0;
+
+      onFirePressed.Invoke(worldPosition-transform.position);
+    }
   }
 
   IEnumerator DashLerp(float lerpSpeed) {
