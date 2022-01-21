@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
+[System.Serializable]
+public class BulletFireEvent : UnityEvent<Vector2> { }
 
 public class Player : MonoBehaviour {
-  [SerializeField]
-  AnimationCurve movementCurve;
-
   [SerializeField]
   float speed = 15f;
 
@@ -15,16 +16,18 @@ public class Player : MonoBehaviour {
   [SerializeField]
   float dashRange = 2f;
 
+  public BulletFireEvent onFirePressed;
+
   Vector3 lastMoveDir = Vector2.zero;
 
   void Update() {
-    Dash();
     Move();
     Look();
+    Dash();
   }
 
   void Move() {
-    lastMoveDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+    lastMoveDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
     transform.position += new Vector3(
       Input.GetAxis("Horizontal") * speed * Time.deltaTime,
@@ -43,7 +46,40 @@ public class Player : MonoBehaviour {
 
   void Dash() {
     if (Input.GetButtonDown("Dash")) {
-      transform.position += lastMoveDir * dashRange;
+      StopAllCoroutines();
+      StartCoroutine(DashLerp(10f));
+    }
+  }
+
+  void Fire() {
+    onFirePressed.Invoke(transform.position);
+  }
+
+  IEnumerator DashLerp(float lerpSpeed) {
+    Vector3 startPos = transform.position;
+    Vector3 endPos = transform.position + lastMoveDir * dashRange;
+    float time = 0f;
+
+    float wiggle = 0.5f;
+
+    float imageCD = 0.001f;
+
+    while (
+      Mathf.Abs(endPos.x - transform.position.x) > wiggle
+      || Mathf.Abs(endPos.y - transform.position.y)  > wiggle
+    ) {
+      Vector2 res = endPos - transform.position;
+      Vector2 absRes = new Vector2(Mathf.Abs(res.x), Mathf.Abs(res.y));
+      transform.position = Vector2.Lerp(startPos, endPos, time);
+
+      if (imageCD < 0) {
+        AfterImagePool.Instance.GetFromPool(transform.position, transform.rotation);
+        imageCD = 0.1f;
+      }
+
+      imageCD -= Time.deltaTime * lerpSpeed;
+      time += Time.deltaTime * lerpSpeed;
+      yield return null;
     }
   }
 }
