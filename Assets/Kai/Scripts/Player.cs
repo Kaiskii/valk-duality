@@ -18,11 +18,18 @@ public class Player : MonoBehaviour {
   [SerializeField]
   float dashRange = 2f;
 
-  [SerializeField, Range(0.001f, 0.01f)]
-  float afterImageSpacing = 0.001f;
+  [SerializeField]
+  float afterImageSpacing = 0.01f;
+  float afterImageTimer = 0.01f;
 
   public BulletFireEvent onShoot;
   public BulletFireEvent onSlash;
+
+  [SerializeField]
+  Color swordColor;
+
+  [SerializeField]
+  Color gunColor;
 
   Vector3 lastMoveDir = Vector2.zero;
 
@@ -31,6 +38,8 @@ public class Player : MonoBehaviour {
     Look();
     Dash();
     Fire();
+
+    GetComponent<SpriteRenderer>().color = StateManager.Instance.playerWStance == WeaponStance.SWORD ? swordColor : gunColor;
   }
 
   void Move() {
@@ -52,7 +61,7 @@ public class Player : MonoBehaviour {
   }
 
   void Dash() {
-    if (Input.GetButtonDown("Dash")) {
+    if (Input.GetButtonDown("Dash") && (lastMoveDir.x != 0f || lastMoveDir.y != 0f)) {
       StateManager.Instance.TogglePlayerStance();
       StopAllCoroutines();
       StartCoroutine(DashLerp(dashSpeed));
@@ -81,8 +90,8 @@ public class Player : MonoBehaviour {
   IEnumerator DashLerp(float lerpSpeed) {
     Vector3 startPos = transform.position;
     Vector3 endPos = transform.position + lastMoveDir * dashRange;
-    float time = 0f;
 
+    float time = 0f;
     float wiggle = 0.5f;
 
     while (
@@ -93,12 +102,12 @@ public class Player : MonoBehaviour {
       Vector2 absRes = new Vector2(Mathf.Abs(res.x), Mathf.Abs(res.y));
       transform.position = Vector2.Lerp(startPos, endPos, time);
 
-      if (afterImageSpacing < 0) {
-        AfterImagePool.Instance.GetFromPool(transform.position, transform.rotation);
-        afterImageSpacing = 0.1f;
+      if (afterImageTimer < 0) {
+        AfterImagePool.Instance.GetFromPool(startPos, endPos, transform.rotation);
+        afterImageTimer = afterImageSpacing;
       }
 
-      afterImageSpacing -= Time.deltaTime * lerpSpeed;
+      afterImageTimer -= Time.deltaTime * 15f;
       time += Time.deltaTime * lerpSpeed;
       yield return null;
     }
