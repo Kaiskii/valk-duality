@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bcc5e40efc482844aaa3b6b1b5e30a5, type: 3}
+  m_Name: 1_TestProjectile
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  spriteMode: 0
+  attachedEffectReference: {fileID: 7526684381380691274, guid: 1b84e8ffca7e162479e5727b7b92599e, type: 3}
+  effectOffset: {x: 0, y: 0, z: 0}
+  executionType: 0
+  maxSpeed: 5
+  speedCurveTime: 0
+  speedCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  timeout: 5
+  tracksTarget: 0
+  maxTrackingSpeed: 5
+  trackingCurveTime: 5
+  trackingCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  trackingDuration: -1
+  stopsOnTarget: 0
+  stopDistance: 0
+  destroyOnTargetReached: 0
+  destroyOnCollision: 1
