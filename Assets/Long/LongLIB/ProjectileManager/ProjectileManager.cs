@@ -7,7 +7,7 @@ public class ProjectileManager : Singleton<ProjectileManager>
 {
   [SerializeField]
   GameObject projectileObject;
-  List<GameObject> projectilePool;
+  List<Projectile> projectilePool;
 
   //EVENTS
   public delegate void ProjectileTimeoutHandler(GameObject source,ProjectileTimeoutArgs args);
@@ -44,7 +44,7 @@ public class ProjectileManager : Singleton<ProjectileManager>
 
   void Start()
   {
-    projectilePool = new List<GameObject>();
+    projectilePool = new List<Projectile>();
   }
 
   public void FireProjectile(int id,Vector3 position,Vector3 direction, GameObject target,Vector3 offset,Transform parent = null)
@@ -66,9 +66,9 @@ public class ProjectileManager : Singleton<ProjectileManager>
     //Search pool for object
     for (int i = 0;i<projectilePool.Count;++i)
     {
-      if (!projectilePool[i].activeInHierarchy)
+      if (!projectilePool[i].gameObject.activeInHierarchy && projectilePool[i].projectileID == id)
       {
-        newProjectile = projectilePool[i];
+        newProjectile = projectilePool[i].gameObject;
       }
     }
 
@@ -83,7 +83,7 @@ public class ProjectileManager : Singleton<ProjectileManager>
       else
         newObj = Instantiate(projectileObject,parent);
 
-      projectilePool.Add(newObj);
+      projectilePool.Add(newObj.GetComponent<Projectile>());
       newProjectile = newObj;
     }
 

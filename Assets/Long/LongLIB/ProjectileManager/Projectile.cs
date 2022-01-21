@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour
   ProjectileDataSO projectileData;
 
   [SerializeField] bool activateOnLoad;
-  [SerializeField] int projectileID;
+  public int projectileID;
   [SerializeField] GameObject target;
   [SerializeField] Vector3 targetOffset;
 
