@@ -25,6 +25,12 @@ public class Player : MonoBehaviour {
   public BulletFireEvent onShoot;
   public BulletFireEvent onSlash;
 
+  [SerializeField]
+  Color swordColor;
+
+  [SerializeField]
+  Color gunColor;
+
   Vector3 lastMoveDir = Vector2.zero;
 
   void Update() {
@@ -32,6 +38,8 @@ public class Player : MonoBehaviour {
     Look();
     Dash();
     Fire();
+
+    GetComponent<SpriteRenderer>().color = StateManager.Instance.playerWStance == WeaponStance.SWORD ? swordColor : gunColor;
   }
 
   void Move() {
@@ -53,7 +61,7 @@ public class Player : MonoBehaviour {
   }
 
   void Dash() {
-    if (Input.GetButtonDown("Dash")) {
+    if (Input.GetButtonDown("Dash") && (lastMoveDir.x != 0f || lastMoveDir.y != 0f)) {
       StateManager.Instance.TogglePlayerStance();
       StopAllCoroutines();
       StartCoroutine(DashLerp(dashSpeed));
@@ -99,7 +107,7 @@ public class Player : MonoBehaviour {
         afterImageTimer = afterImageSpacing;
       }
 
-      afterImageTimer -= Time.deltaTime * lerpSpeed;
+      afterImageTimer -= Time.deltaTime * 15f;
       time += Time.deltaTime * lerpSpeed;
       yield return null;
     }
