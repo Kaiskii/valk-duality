@@ -223,7 +223,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abc079ca18ef6ea428a63ae3d6a54fe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -1
+      value: -1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.9902887
+      outSlope: 0.8888204
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.20481926
+      outWeight: 0.050086282
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   speed: 13
+  rotate: 10
+  dashRange: 1
 --- !u!1001 &8705813252916190135
 PrefabInstance:
   m_ObjectHideFlags: 0
