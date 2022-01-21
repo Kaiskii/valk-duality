@@ -8,10 +8,12 @@ public class ExampleListenerScript : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start(){
-      ProjectileManager.Instance.ProjectileCollision += OnProjectileCollision;
+      ProjectileManager.Instance.ProjectileCollision += ProjectileCollision;
+
+
     }
 
-    private void OnProjectileCollision(GameObject obj,ProjectileCollisionArgs args){
+    private void ProjectileCollision(GameObject obj,ProjectileCollisionArgs args){
       if(args.hitObject == this.gameObject){
         Debug.Log(gameObject.name+" hit by " + args.projectileID);
       }

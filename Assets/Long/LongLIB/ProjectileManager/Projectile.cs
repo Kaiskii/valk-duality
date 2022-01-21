@@ -6,7 +6,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
   SpriteRenderer rend;
-  BoxCollider2D boxCollider;
+  Collider2D col;
 
   GameObject attachedEffects;
   ProjectileDataSO projectileData;
@@ -44,7 +44,7 @@ public class Projectile : MonoBehaviour
     rend = GetComponentInChildren<SpriteRenderer>();
     rend.sprite = projectileData.sprite;
 
-    boxCollider = GetComponentInChildren<BoxCollider2D>();
+    col = GetComponentInChildren<CircleCollider2D>();
 
     if(projectileData.attachedEffectReference)
     {
@@ -121,7 +121,9 @@ public class Projectile : MonoBehaviour
     } else if (!targetReached){
       targetReached = true;
       ProjectileManager.Instance?.OnTargetReached(this.gameObject,new TargetReachedArgs(){projectileID = this.projectileID});
-      if(projectileData.destroyOnTargetReached) OnDestroy();
+      if(projectileData.destroyOnTargetReached) {
+        OnDestroy();
+      }
     }
   }
 
