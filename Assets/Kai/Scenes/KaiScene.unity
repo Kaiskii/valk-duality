@@ -919,6 +919,10 @@ PrefabInstance:
       value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1004216004, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
+      propertyPath: gunColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004216004, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
       propertyPath: gunColor.b
       value: 0.6179246
       objectReference: {fileID: 0}
@@ -928,6 +932,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1004216004, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
       propertyPath: gunColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004216004, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
+      propertyPath: swordColor.a
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1004216004, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
