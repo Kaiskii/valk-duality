@@ -47,20 +47,20 @@ public class ProjectileManager : Singleton<ProjectileManager>
     projectilePool = new List<GameObject>();
   }
 
-  public void FireProjectile(int id,Vector3 position,Vector3 direction, GameObject target,Vector3 offset)
+  public void FireProjectile(int id,Vector3 position,Vector3 direction, GameObject target,Vector3 offset,Transform parent = null)
   {
     GameObject newProjectile;
-    newProjectile = CreateProjectile(id,position);
+    newProjectile = CreateProjectile(id,position,parent);
     newProjectile.GetComponent<Projectile>().SetTarget(direction,target,offset);
   }
-  public void FireProjectile(int id,Vector3 position, Vector3 direction)
+  public void FireProjectile(int id,Vector3 position, Vector3 direction,Transform parent = null)
   {
     GameObject newProjectile;
-    newProjectile = CreateProjectile(id,position);
+    newProjectile = CreateProjectile(id,position,parent);
     newProjectile.GetComponent<Projectile>().SetTarget(direction);
   }
 
-  GameObject CreateProjectile(int id,Vector3 position)
+  GameObject CreateProjectile(int id,Vector3 position, Transform parent = null)
   {
     GameObject newProjectile = null;
     //Search pool for object
@@ -73,9 +73,16 @@ public class ProjectileManager : Singleton<ProjectileManager>
     }
 
     //If not, create a new one
-    if(newProjectile == null)
+    if(!newProjectile)
     {
-      GameObject newObj = Instantiate(projectileObject,this.transform);
+      GameObject newObj;
+
+      //If a parent is specified, parent it under them instead
+      if(!parent)
+        newObj = Instantiate(projectileObject,this.transform);
+      else
+        newObj = Instantiate(projectileObject,parent);
+
       projectilePool.Add(newObj);
       newProjectile = newObj;
     }
