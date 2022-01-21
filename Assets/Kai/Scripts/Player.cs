@@ -18,8 +18,9 @@ public class Player : MonoBehaviour {
   [SerializeField]
   float dashRange = 2f;
 
-  [SerializeField, Range(0.001f, 0.01f)]
-  float afterImageSpacing = 0.001f;
+  [SerializeField]
+  float afterImageSpacing = 0.01f;
+  float afterImageTimer = 0.01f;
 
   public BulletFireEvent onShoot;
   public BulletFireEvent onSlash;
@@ -81,8 +82,8 @@ public class Player : MonoBehaviour {
   IEnumerator DashLerp(float lerpSpeed) {
     Vector3 startPos = transform.position;
     Vector3 endPos = transform.position + lastMoveDir * dashRange;
-    float time = 0f;
 
+    float time = 0f;
     float wiggle = 0.5f;
 
     while (
@@ -93,12 +94,12 @@ public class Player : MonoBehaviour {
       Vector2 absRes = new Vector2(Mathf.Abs(res.x), Mathf.Abs(res.y));
       transform.position = Vector2.Lerp(startPos, endPos, time);
 
-      if (afterImageSpacing < 0) {
-        AfterImagePool.Instance.GetFromPool(transform.position, transform.rotation);
-        afterImageSpacing = 0.1f;
+      if (afterImageTimer < 0) {
+        AfterImagePool.Instance.GetFromPool(startPos, endPos, transform.rotation);
+        afterImageTimer = afterImageSpacing;
       }
 
-      afterImageSpacing -= Time.deltaTime * lerpSpeed;
+      afterImageTimer -= Time.deltaTime * lerpSpeed;
       time += Time.deltaTime * lerpSpeed;
       yield return null;
     }
