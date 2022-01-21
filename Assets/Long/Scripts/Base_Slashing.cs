@@ -24,7 +24,7 @@ public class Base_Slashing : MonoBehaviour
 
     Debug.DrawLine(transform.position,direction+transform.position,Color.cyan,0.5f);
 
-    ParticleManager.Instance.CreateParticle(slashEffectName,transform.position,direction);
+    ParticleManager.Instance.CreateParticle(slashEffectName,transform.position,direction,this.transform);
     SoundManager.Instance.Play(slashSFXName);
 
     ProjectileManager.Instance.FireProjectile(projectileID,transform.position+direction*slashOffset,direction,this.transform);

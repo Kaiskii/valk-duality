@@ -17,7 +17,7 @@ public class ParticleManager : Singleton<ParticleManager>
     particlePool = new List<ParticleLibrary.ParticleAsset>();
   }
 
-  public void CreateParticle(string particleName, Vector2 position)
+  public void CreateParticle(string particleName, Vector2 position,Transform parent = null)
   {
     GameObject newParticle = GetParticle(particleName);
     if(!newParticle) return;
@@ -27,9 +27,9 @@ public class ParticleManager : Singleton<ParticleManager>
     newParticle.GetComponent<ParticleSystem>().Play();
   }
 
-  public void CreateParticle(string particleName, Vector2 position,Vector3 direction)
+  public void CreateParticle(string particleName, Vector2 position,Vector3 direction,Transform parent = null)
   {
-    GameObject newParticle = GetParticle(particleName);
+    GameObject newParticle = GetParticle(particleName,parent);
     if(!newParticle) return;
 
     newParticle.transform.position = position;
@@ -41,7 +41,7 @@ public class ParticleManager : Singleton<ParticleManager>
     newParticle.GetComponent<ParticleSystem>().Play();
   }
 
-  GameObject GetParticle(string particleName)
+  GameObject GetParticle(string particleName, Transform parent = null)
   {
     //Search pool for object
     for (int i = 0;i<particlePool.Count;++i)
@@ -57,7 +57,14 @@ public class ParticleManager : Singleton<ParticleManager>
       return null;
     }
 
-    GameObject newParticleObj = Instantiate(particleLibrary.GetParticle(particleName),this.transform);
+    GameObject newParticleObj;
+
+    if(!parent){
+      newParticleObj = Instantiate(particleLibrary.GetParticle(particleName),this.transform);
+    }else{
+      newParticleObj = Instantiate(particleLibrary.GetParticle(particleName),parent);
+    }
+
     particlePool.Add(new ParticleLibrary.ParticleAsset(){name = particleName,particle = newParticleObj});
     return newParticleObj;
   }

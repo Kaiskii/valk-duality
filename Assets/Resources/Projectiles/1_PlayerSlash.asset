@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bcc5e40efc482844aaa3b6b1b5e30a5, type: 3}
   m_Name: 1_PlayerSlash
   m_EditorClassIdentifier: 
+  layerName: Default
   sprite: {fileID: 7482667652216324306, guid: c6f8c0c1800999145aeef31b94fd2066, type: 3}
   spriteMode: 0
   attachedEffectReference: {fileID: 0}

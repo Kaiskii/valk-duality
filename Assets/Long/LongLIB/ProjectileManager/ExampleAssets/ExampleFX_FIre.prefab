@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1381322143078728519}
   - component: {fileID: 4104823216078775647}
   m_Layer: 0
-  m_Name: ExampleFX_FIre
+  m_Name: ExampleFX_Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

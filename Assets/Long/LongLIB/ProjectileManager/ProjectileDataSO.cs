@@ -18,6 +18,8 @@ public class ProjectileDataSO : ScriptableObject
     FLIP_X,
     FLIP_Y
   }
+  [Header("Layer")]
+  public string layerName = "Default";
 
   [Header("Sprite")]
   public Sprite sprite;

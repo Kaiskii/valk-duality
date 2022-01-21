@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ExampleTarget (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2631788727741346208, guid: 55c0c42f53d1ed04791b03cef23329b9, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2631788727741346215, guid: 55c0c42f53d1ed04791b03cef23329b9, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -346,7 +350,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 638112945}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3740004, y: -0.33299977, z: -15}
+  m_LocalPosition: {x: -1.3740009, y: -0.33299977, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1388667092}
@@ -420,57 +424,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &1004216003 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2895426607654213905, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
-  m_PrefabInstance: {fileID: 8705813252916190135}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1004216004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1004216003}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abc079ca18ef6ea428a63ae3d6a54fe1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 13
-  rotate: 10
-  dashRange: 5
-  onFirePressed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1004216005}
-        m_TargetAssemblyTypeName: Base_Shooting, Assembly-CSharp
-        m_MethodName: Shoot
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1004216005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1004216003}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ac4635d56d3ce141b19968e16220f73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectileID: 0
-  muzzleFlashEffectName: Pew
-  fireSFXName: GunFX
-  target: {fileID: 0}
 --- !u!4 &1004216007 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6725996246425997179, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
@@ -623,7 +576,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1046920199}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3740004, y: -0.33299977, z: -15}
+  m_LocalPosition: {x: -1.3740009, y: -0.33299977, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 410233192}
@@ -772,6 +725,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ExampleTarget
       objectReference: {fileID: 0}
+    - target: {fileID: 2631788727741346208, guid: 55c0c42f53d1ed04791b03cef23329b9, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2631788727741346215, guid: 55c0c42f53d1ed04791b03cef23329b9, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -828,6 +785,10 @@ PrefabInstance:
     - target: {fileID: 2631788727741346208, guid: 55c0c42f53d1ed04791b03cef23329b9, type: 3}
       propertyPath: m_Name
       value: ExampleTarget (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2631788727741346208, guid: 55c0c42f53d1ed04791b03cef23329b9, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2631788727741346215, guid: 55c0c42f53d1ed04791b03cef23329b9, type: 3}
       propertyPath: m_RootOrder
@@ -941,10 +902,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2895426607654213905, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
       propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 2895426607654213905, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
-      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6725996246425997179, guid: a9f8a402978b7ba43b874af03750658f, type: 3}

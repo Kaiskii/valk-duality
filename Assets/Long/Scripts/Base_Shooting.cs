@@ -15,6 +15,9 @@ public class Base_Shooting : MonoBehaviour
   [SerializeField]
   GameObject target;
 
+  [SerializeField]
+  Transform projectileSpawn;
+
   // Update is called once per frame
   /*
   void Update()
@@ -36,9 +39,9 @@ public class Base_Shooting : MonoBehaviour
 
     Debug.DrawLine(transform.position,direction+transform.position,Color.cyan,0.5f);
 
-    ParticleManager.Instance.CreateParticle(muzzleFlashEffectName,transform.position,direction);
+    ParticleManager.Instance.CreateParticle(muzzleFlashEffectName,transform.position,direction,this.transform);
     SoundManager.Instance.Play(fireSFXName);
 
-    ProjectileManager.Instance.FireProjectile(projectileID,transform.position,direction);
+    ProjectileManager.Instance.FireProjectile(projectileID,projectileSpawn.position,direction);
   }
 }

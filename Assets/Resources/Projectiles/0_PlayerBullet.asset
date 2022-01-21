@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bcc5e40efc482844aaa3b6b1b5e30a5, type: 3}
   m_Name: 0_PlayerBullet
   m_EditorClassIdentifier: 
+  layerName: PlayerProjectile
   sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   spriteMode: 0
   attachedEffectReference: {fileID: 7526684381380691274, guid: 1b84e8ffca7e162479e5727b7b92599e, type: 3}

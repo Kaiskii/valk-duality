@@ -54,6 +54,12 @@ public class Projectile : MonoBehaviour
       attachedEffects.transform.localPosition = projectileData.effectOffset;
     }
 
+    if(LayerMask.NameToLayer(projectileData.layerName) != -1){
+      gameObject.layer = LayerMask.NameToLayer(projectileData.layerName);
+    }else{
+      Debug.LogWarning(name + " has invalid LayerName '"+ projectileData.layerName +"'; using Default instead!");
+    }
+
     startTime = Time.time;
 
     //If we're spawned in with an existing offset or target, just set our target
