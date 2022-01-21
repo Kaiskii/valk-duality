@@ -420,62 +420,33 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &1004216003 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2895426607654213905, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
+--- !u!114 &1004216006 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6799446405527653603, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
   m_PrefabInstance: {fileID: 8705813252916190135}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1004216004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1004216003}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abc079ca18ef6ea428a63ae3d6a54fe1, type: 3}
+  m_Script: {fileID: 11500000, guid: fab7273e68162604abacdd1a10ff163c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 13
-  rotate: 10
-  dashRange: 5
-  onFirePressed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1004216005}
-        m_TargetAssemblyTypeName: Base_Shooting, Assembly-CSharp
-        m_MethodName: Shoot
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1004216005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1004216003}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ac4635d56d3ce141b19968e16220f73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectileID: 0
-  muzzleFlashEffectName: Pew
-  fireSFXName: GunFX
-  target: {fileID: 0}
 --- !u!4 &1004216007 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6725996246425997179, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
   m_PrefabInstance: {fileID: 8705813252916190135}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1004216008 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1004216005, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
+  m_PrefabInstance: {fileID: 8705813252916190135}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ac4635d56d3ce141b19968e16220f73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1046920199
 GameObject:
   m_ObjectHideFlags: 0
@@ -939,12 +910,80 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2895426607654213905, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
-      propertyPath: m_Name
-      value: Player
+    - target: {fileID: 1004216004, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
+      propertyPath: dashRange
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004216004, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
+      propertyPath: dashSpeed
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004216004, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
+      propertyPath: onShoot.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004216004, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
+      propertyPath: onSlash.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004216004, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
+      propertyPath: onShoot.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004216004, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
+      propertyPath: onShoot.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004216004, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
+      propertyPath: onSlash.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004216004, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
+      propertyPath: onShoot.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1004216008}
+    - target: {fileID: 1004216004, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
+      propertyPath: onSlash.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1004216006}
+    - target: {fileID: 1004216004, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
+      propertyPath: onShoot.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004216004, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
+      propertyPath: onShoot.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004216004, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
+      propertyPath: onSlash.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004216004, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
+      propertyPath: onShoot.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Shoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004216004, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
+      propertyPath: onSlash.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Slash
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004216004, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
+      propertyPath: onShoot.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Base_Shooting, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004216004, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
+      propertyPath: onSlash.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Base_Slashing, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004216004, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
+      propertyPath: onShoot.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004216004, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
+      propertyPath: onSlash.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2895426607654213905, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
-      propertyPath: m_TagString
+      propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6725996246425997179, guid: a9f8a402978b7ba43b874af03750658f, type: 3}

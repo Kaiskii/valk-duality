@@ -14,9 +14,15 @@ public class Player : MonoBehaviour {
   float rotate = 10f;
 
   [SerializeField]
+  float dashSpeed = 10f;
+  [SerializeField]
   float dashRange = 2f;
 
-  public BulletFireEvent onFirePressed;
+  [SerializeField, Range(0.001f, 0.01f)]
+  float afterImageSpacing = 0.001f;
+
+  public BulletFireEvent onShoot;
+  public BulletFireEvent onSlash;
 
   Vector3 lastMoveDir = Vector2.zero;
 
@@ -47,8 +53,9 @@ public class Player : MonoBehaviour {
 
   void Dash() {
     if (Input.GetButtonDown("Dash")) {
+      StateManager.Instance.TogglePlayerStance();
       StopAllCoroutines();
-      StartCoroutine(DashLerp(10f));
+      StartCoroutine(DashLerp(dashSpeed));
     }
   }
 
@@ -58,7 +65,16 @@ public class Player : MonoBehaviour {
       Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePos);
       worldPosition.z = 0;
 
-      onFirePressed.Invoke(worldPosition-transform.position);
+      switch(StateManager.Instance.playerWStance) {
+        case WeaponStance.SWORD:
+          onSlash.Invoke(worldPosition-transform.position);
+          break;
+        case WeaponStance.GUN:
+          onShoot.Invoke(worldPosition-transform.position);
+          break;
+        default:
+          break;
+      }
     }
   }
 
@@ -69,8 +85,6 @@ public class Player : MonoBehaviour {
 
     float wiggle = 0.5f;
 
-    float imageCD = 0.001f;
-
     while (
       Mathf.Abs(endPos.x - transform.position.x) > wiggle
       || Mathf.Abs(endPos.y - transform.position.y)  > wiggle
@@ -79,12 +93,12 @@ public class Player : MonoBehaviour {
       Vector2 absRes = new Vector2(Mathf.Abs(res.x), Mathf.Abs(res.y));
       transform.position = Vector2.Lerp(startPos, endPos, time);
 
-      if (imageCD < 0) {
+      if (afterImageSpacing < 0) {
         AfterImagePool.Instance.GetFromPool(transform.position, transform.rotation);
-        imageCD = 0.1f;
+        afterImageSpacing = 0.1f;
       }
 
-      imageCD -= Time.deltaTime * lerpSpeed;
+      afterImageSpacing -= Time.deltaTime * lerpSpeed;
       time += Time.deltaTime * lerpSpeed;
       yield return null;
     }
