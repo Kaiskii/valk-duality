@@ -78,6 +78,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c72683b15be2c458bb1c8027f46134, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debug: 0
+  collisionEvents: 0
+  onProjectileCollision:
+    m_PersistentCalls:
+      m_Calls: []
+  destructionEvents: 0
+  onProjectileDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
+  targetReachedEvents: 0
+  onProjectileReachedTarget:
+    m_PersistentCalls:
+      m_Calls: []
+  timeoutEvents: 0
+  onProjectileTimeout:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &8530327565678361250
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -167,7 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f75ef3a3917884d921237c70502955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSpeed: 3
+  attackSpeed: 2
   onAttack:
     m_PersistentCalls:
       m_Calls:
@@ -196,7 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileID: 2
-  muzzleFlashEffectName: Pew
+  muzzleFlashEffectName: EnemyFire
   fireSFXName: PlayerShoot
   target: {fileID: 0}
   projectileSpawn: {fileID: 8530327565678361252}

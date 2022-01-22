@@ -16,8 +16,8 @@ TagManager:
   - PlayerProjectile
   - Enemy
   - EnemyProjectile
-  - 
-  - 
+  - PlayerSlash
+  - EnemySlash
   - 
   - 
   - 

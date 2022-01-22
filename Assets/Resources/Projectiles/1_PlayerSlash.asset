@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bcc5e40efc482844aaa3b6b1b5e30a5, type: 3}
   m_Name: 1_PlayerSlash
   m_EditorClassIdentifier: 
-  layerName: PlayerProjectile
+  layerName: PlayerSlash
   scale: 2.5
   sprite: {fileID: -2413806693520163455, guid: e0047dac6aeacb64db918bb823f60ac4, type: 3}
   spriteColor: {r: 1, g: 1, b: 1, a: 0.39215687}
@@ -43,3 +43,4 @@ MonoBehaviour:
   stopDistance: 0
   destroyOnTargetReached: 0
   destroyOnCollision: 0
+  payload: {fileID: 0}

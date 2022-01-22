@@ -13,41 +13,33 @@ MonoBehaviour:
   m_Name: 2_EnemyBullet
   m_EditorClassIdentifier: 
   layerName: EnemyProjectile
+  scale: 1
   sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   spriteColor: {r: 1, g: 0, b: 0, a: 1}
   spriteMode: 0
   attachedEffectReference: {fileID: 2388785445767760873, guid: e97e31d6e34c0d14bb1eaf147ec301a4, type: 3}
   effectOffset: {x: 0, y: 0, z: 0}
   executionType: 0
-  maxSpeed: 5
+  maxSpeed: 3
   speedCurveTime: 3
   speedCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: -0.00076161465
-      value: 0.0754717
+      time: 0
+      value: 1
       inSlope: 0
       outSlope: 0
-      tangentMode: 0
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.61563957
-      value: 0.12226743
-      inSlope: 0.4799052
-      outSlope: 0.4799052
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.022654073
-      outWeight: 0.33333334
-    - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0
@@ -69,3 +61,4 @@ MonoBehaviour:
   stopDistance: 0
   destroyOnTargetReached: 0
   destroyOnCollision: 1
+  payload: {fileID: 0}
