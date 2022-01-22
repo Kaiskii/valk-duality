@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -102524876349858939, guid: f9bdd2d4b92fda24f9cdf0a8afdba15e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cf3e172128120494a81630c82a538574, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,22 +101,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 13
   rotate: 10
+  dashSpeed: 10
   dashRange: 5
-  onFirePressed:
+  afterImageSpacing: 0.01
+  onShoot:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1004216005}
-        m_TargetAssemblyTypeName: Base_Shooting, Assembly-CSharp
-        m_MethodName: Shoot
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  onSlash:
+    m_PersistentCalls:
+      m_Calls: []
+  swordColor: {r: 0, g: 0, b: 0, a: 0}
+  gunColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &1004216005
 MonoBehaviour:
   m_ObjectHideFlags: 0
