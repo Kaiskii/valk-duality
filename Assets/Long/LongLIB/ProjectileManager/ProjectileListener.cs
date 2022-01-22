@@ -14,9 +14,6 @@ using UnityEngine.Events;
 
 public class ProjectileListener : MonoBehaviour
 {
-    [Header("Debug")]
-    [SerializeField] bool debug;
-
     [Header("Events")]
     [SerializeField] bool collisionEvents;
     public ProjectileCollisionEvent onProjectileCollision;

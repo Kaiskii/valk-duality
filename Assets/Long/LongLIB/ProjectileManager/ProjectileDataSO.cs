@@ -55,7 +55,7 @@ public class ProjectileDataSO : ScriptableObject
   public bool destroyOnCollision;
 
   [Header("Additional")]
-  public GameObject payload;
+  public ScriptableObject payload;
 }
 
 

@@ -30,6 +30,7 @@ public class ProjectileManager : Singleton<ProjectileManager>
   public event ProjectileCollisionHandler ProjectileCollision;
   public void OnProjectileCollision(Projectile self,ProjectileCollisionArgs args){
     if(ProjectileCollision != null){
+      //Debug.Log("ID:"+ self.projectileID + " hit " + args.hitObject.name);
       ProjectileCollision(self,args);
     }
   }

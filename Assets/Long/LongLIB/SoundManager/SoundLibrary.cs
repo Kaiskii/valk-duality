@@ -35,7 +35,7 @@ public class SoundLibrary : ScriptableObject
       }
   }
 #endif
-  static Dictionary<string, AudioClip> soundDictionary;
+  static Dictionary<string, SoundAsset> soundDictionary;
 
   [RuntimeInitializeOnLoadMethod]
   private static void Init(){
@@ -46,7 +46,7 @@ public class SoundLibrary : ScriptableObject
       return;
     }
 
-    soundDictionary = new Dictionary<string, AudioClip>();
+    soundDictionary = new Dictionary<string, SoundAsset>();
 
     foreach(SoundAsset fx in index.effectClips)
     {
@@ -56,7 +56,7 @@ public class SoundLibrary : ScriptableObject
           Debug.LogErrorFormat("Duplicate FX name: "+fx.name);
           continue;
       }
-      soundDictionary.Add(fx.name, fx.clip);
+      soundDictionary.Add(fx.name, fx);
     }
 
     foreach(SoundAsset bgm in index.musicClips)
@@ -67,12 +67,12 @@ public class SoundLibrary : ScriptableObject
           Debug.LogErrorFormat("Duplicate BGM name: "+bgm.name);
           continue;
       }
-      soundDictionary.Add(bgm.name, bgm.clip);
+      soundDictionary.Add(bgm.name, bgm);
     }
   }
 
-  public AudioClip GetClip(string clip){
-    AudioClip foundClip;
+  public SoundAsset GetSoundAsset(string clip){
+    SoundAsset foundClip;
     soundDictionary.TryGetValue(clip,out foundClip);
     return foundClip;
   }
@@ -82,5 +82,7 @@ public class SoundLibrary : ScriptableObject
   {
       public string name;
       public AudioClip clip;
+      public float baseVolume;
+      public Vector2 pitchVariance;
   }
 }

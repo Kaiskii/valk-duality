@@ -39,11 +39,12 @@ public class Base_Parrying : MonoBehaviour
 
   void Parry(Transform parriedObject, Vector2 dir)
   {
+    Debug.Log(Vector2.Distance(transform.position,parriedObject.position));
+    
     Vector2 direction = dir.normalized;
-
-    Debug.DrawLine(transform.position,dir+(Vector2)transform.position,Color.cyan,0.5f);
-
     ParticleManager.Instance.CreateParticle(parryEffect,transform.position,direction,this.transform);
+
+
     SoundManager.Instance.Play(normalParrySFX, 0.5f);
 
     ProjectileManager.Instance.FireProjectile(spawnedProjectileID,parriedObject.position,direction);

@@ -43,4 +43,4 @@ MonoBehaviour:
   stopDistance: 0
   destroyOnTargetReached: 0
   destroyOnCollision: 0
-  payload: {fileID: 0}
+  payload: {fileID: 11400000, guid: cc7f2a21653f484418e178c11a6755cb, type: 2}

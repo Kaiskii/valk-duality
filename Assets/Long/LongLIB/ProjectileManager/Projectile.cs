@@ -9,10 +9,11 @@ public class Projectile : MonoBehaviour
   Collider2D col;
 
   GameObject attachedEffects;
-  ProjectileDataSO projectileData;
+
+  public int projectileID;
+  public ProjectileDataSO projectileData;
 
   [SerializeField] bool activateOnLoad;
-  public int projectileID;
   [SerializeField] GameObject target;
   [SerializeField] Vector3 targetOffset;
 

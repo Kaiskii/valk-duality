@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: 2_EnemyBullet
   m_EditorClassIdentifier: 
   layerName: EnemyProjectile
-  scale: 1
-  sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  scale: 0.5
+  sprite: {fileID: -2413806693520163455, guid: e0047dac6aeacb64db918bb823f60ac4, type: 3}
   spriteColor: {r: 1, g: 0, b: 0, a: 1}
   spriteMode: 0
   attachedEffectReference: {fileID: 2388785445767760873, guid: e97e31d6e34c0d14bb1eaf147ec301a4, type: 3}
-  effectOffset: {x: 0, y: 0, z: 0}
+  effectOffset: {x: -0.5, y: 0, z: 0}
   executionType: 0
   maxSpeed: 3
   speedCurveTime: 3
@@ -61,4 +61,4 @@ MonoBehaviour:
   stopDistance: 0
   destroyOnTargetReached: 0
   destroyOnCollision: 1
-  payload: {fileID: 0}
+  payload: {fileID: 11400000, guid: d10134b28af03054b9e33395468e562b, type: 2}

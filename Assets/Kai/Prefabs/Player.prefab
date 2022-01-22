@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1004216004}
   - component: {fileID: 1004216005}
   - component: {fileID: 6799446405527653603}
+  - component: {fileID: 386270010}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -105,7 +106,12 @@ MonoBehaviour:
   rotate: 10
   dashSpeed: 12
   dashRange: 4
+  hurtSFX: PlayerHurt
+  deathSFX: Death
   onDeathEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onDamageEvent:
     m_PersistentCalls:
       m_Calls: []
   afterImageSpacing: 0.4
@@ -154,7 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileID: 0
-  muzzleFlashEffectName: Pew
+  muzzleFlashEffectName: PlayerFire
   fireSFXName: PlayerShoot
   target: {fileID: 0}
   projectileSpawn: {fileID: 61802149701476288}
@@ -171,10 +177,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileID: 1
-  slashEffectName: Pew
+  slashEffectName: PlayerFire
   slashSFXName: PlayerSlash
   slashOffset: 1
   target: {fileID: 0}
+--- !u!114 &386270010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2895426607654213905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8809b6dcab408b04794643e5cfb2dbe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnedProjectileID: 0
+  parryableProjectileIDs: 02000000
+  parryEffect: PlayerFire
+  normalParrySFX: 
+  perfectParrySFX: 
 --- !u!1 &8530394158552994887
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,7 +237,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1060607698850593107}
-  - component: {fileID: 2990564389591501931}
+  - component: {fileID: 7351707118889505303}
   - component: {fileID: 5993675310715905711}
   m_Layer: 7
   m_Name: PlayerCollider
@@ -237,7 +260,7 @@ Transform:
   m_Father: {fileID: 6725996246425997179}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2990564389591501931
+--- !u!114 &7351707118889505303
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -246,9 +269,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8937782496944069849}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6c72683b15be2c458bb1c8027f46134, type: 3}
+  m_Script: {fileID: 11500000, guid: 906a4904c1e5b1348a670fee2bdaee91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetStats: {fileID: 1004216004}
+  debug: 0
 --- !u!58 &5993675310715905711
 CircleCollider2D:
   m_ObjectHideFlags: 0

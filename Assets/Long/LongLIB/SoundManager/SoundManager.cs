@@ -55,46 +55,49 @@ public class SoundManager : Singleton<SoundManager> {
   }
 
   // Play a single clip through the sound effects source.
-  public void Play(string effect, float volume = 1f) {
-    AudioClip clip = soundLibrary.GetClip(effect);
-    if(!clip || soundsPlayed>soundLibrary.maxSounds) return;
+  public void Play(string effect, float volume = -1f) {
+    SoundLibrary.SoundAsset soundAsset = soundLibrary.GetSoundAsset(effect);
+    if(!soundAsset.clip || soundsPlayed>soundLibrary.maxSounds) return;
 
-    audioSource.clip = clip;
-    audioSource.pitch = 1;
-    audioSource.volume = volume;
-    audioSource.PlayOneShot(clip);
+    audioSource.clip = soundAsset.clip;
+    audioSource.pitch = Random.Range(soundAsset.pitchVariance.x,soundAsset.pitchVariance.y);
+    if(volume != -1)
+      audioSource.volume = volume;
+    else
+      audioSource.volume = soundAsset.baseVolume;
 
+    audioSource.PlayOneShot(soundAsset.clip);
     soundsPlayed++;
   }
 
   public void PlayRandomPitch(string effect,float minPitch = 0.8f,float maxPitch = 1.2f) {
-    AudioClip clip = soundLibrary.GetClip(effect);
-    if(!clip || soundsPlayed>soundLibrary.maxSounds) return;
+    SoundLibrary.SoundAsset soundAsset = soundLibrary.GetSoundAsset(effect);
+    if(!soundAsset.clip || soundsPlayed>soundLibrary.maxSounds) return;
 
-    audioSource.clip = clip;
+    audioSource.clip = soundAsset.clip;
     audioSource.pitch = Random.Range(minPitch, maxPitch);
-    audioSource.PlayOneShot(clip);
+    audioSource.PlayOneShot(soundAsset.clip);
 
     soundsPlayed++;
   }
 
   // Play a single clip through the music source.
   public void PlayMusic(string bgm) {
-    AudioClip clip = soundLibrary.GetClip(bgm);
-    if(!clip) return;
+    SoundLibrary.SoundAsset soundAsset = soundLibrary.GetSoundAsset(bgm);
+    if(!soundAsset.clip) return;
 
-    bgmSource.clip = clip;
-    bgmSource.PlayOneShot(clip);
+    bgmSource.clip = soundAsset.clip;
+    bgmSource.PlayOneShot(soundAsset.clip);
   }
 
   public void PlayMusicWithFade(string bgm,float fadeInTime){
-    AudioClip clip = soundLibrary.GetClip(bgm);
-    if(!clip) return;
+    SoundLibrary.SoundAsset soundAsset = soundLibrary.GetSoundAsset(bgm);
+    if(!soundAsset.clip) return;
 
     fadeTime = fadeInTime;
-    bgmSource.clip = clip;
+    bgmSource.clip = soundAsset.clip;
     bgmSource.volume = 0;
-    bgmSource.PlayOneShot(clip,0.5f);
+    bgmSource.PlayOneShot(soundAsset.clip,0.5f);
     isFading = true;
   }
 }

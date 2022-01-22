@@ -39,11 +39,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8530327565678361252}
-  - component: {fileID: 8530327565678361253}
   - component: {fileID: 8530327565678361250}
   - component: {fileID: 4552617165003598036}
   - component: {fileID: 7659364745379535012}
   - component: {fileID: 3058733935996773641}
+  - component: {fileID: -1317066870190580029}
+  - component: {fileID: -7952672876192508905}
   m_Layer: 9
   m_Name: Enemy_Shooter
   m_TagString: Untagged
@@ -66,35 +67,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8530327565678361253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8530327565678361251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6c72683b15be2c458bb1c8027f46134, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  debug: 0
-  collisionEvents: 0
-  onProjectileCollision:
-    m_PersistentCalls:
-      m_Calls: []
-  destructionEvents: 0
-  onProjectileDestroyed:
-    m_PersistentCalls:
-      m_Calls: []
-  targetReachedEvents: 0
-  onProjectileReachedTarget:
-    m_PersistentCalls:
-      m_Calls: []
-  timeoutEvents: 0
-  onProjectileTimeout:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!61 &8530327565678361250
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -217,3 +189,43 @@ MonoBehaviour:
   fireSFXName: PlayerShoot
   target: {fileID: 0}
   projectileSpawn: {fileID: 8530327565678361252}
+--- !u!114 &-1317066870190580029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8530327565678361251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 906a4904c1e5b1348a670fee2bdaee91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetStats: {fileID: -7952672876192508905}
+  debug: 0
+--- !u!114 &-7952672876192508905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8530327565678361251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8557c2300e6c76847a5f2e04b7929da6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 15
+  maxHealth: 15
+  speed: 13
+  rotate: 10
+  dashSpeed: 12
+  dashRange: 4
+  hurtSFX: EnemyHurt
+  deathSFX: Death
+  onDeathEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onDamageEvent:
+    m_PersistentCalls:
+      m_Calls: []

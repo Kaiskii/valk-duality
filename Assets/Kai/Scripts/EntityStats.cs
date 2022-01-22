@@ -5,10 +5,13 @@ using UnityEngine.Events;
 
 [System.Serializable]
 public class OnDeathEvent : UnityEvent { }
+[System.Serializable]
+public class OnDamageEvent : UnityEvent { }
 
 public class EntityStats : MonoBehaviour {
   public float health = 100f;
   public float maxHealth = 100f;
+  [SerializeField] bool affectsHeathUI = false;
 
   [SerializeField]
   protected float speed = 13f;
@@ -19,12 +22,19 @@ public class EntityStats : MonoBehaviour {
   protected float dashSpeed = 12f;
   [SerializeField]
   protected float dashRange = 4f;
+  
+  [Header("SFX")]
+  [SerializeField] string hurtSFX = "";
+  [SerializeField] string deathSFX = "";
 
+  [Header("Events")]
   [SerializeField]
   OnDeathEvent onDeathEvent;
+  [SerializeField]
+  OnDamageEvent onDamageEvent;
 
   protected virtual void Awake() {
-    HealthBarManager.Instance.QueueHealthChange(health / maxHealth);
+    if(affectsHeathUI) HealthBarManager.Instance.QueueHealthChange(health / maxHealth);
   }
 
 #if UNITY_EDITOR
@@ -35,14 +45,16 @@ public class EntityStats : MonoBehaviour {
   }
 #endif
 
-  void DoTakeDamage(float value) {
+  public void DoTakeDamage(float value) {
     if (health > 0) {
       health = Mathf.Clamp(health + value * -1f, 0f, 100f);
+      SoundManager.Instance.Play(hurtSFX);
     } else {
       health = 100f;
+      SoundManager.Instance.Play(deathSFX);
       onDeathEvent.Invoke();
     }
 
-    HealthBarManager.Instance.QueueHealthChange(health / maxHealth);
+    if(affectsHeathUI) HealthBarManager.Instance.QueueHealthChange(health / maxHealth);
   }
 }
