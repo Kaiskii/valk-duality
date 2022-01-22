@@ -53,14 +53,15 @@ public class SoundManager : Singleton<SoundManager> {
       }
     }
   }
-  
+
   // Play a single clip through the sound effects source.
-  public void Play(string effect) {
+  public void Play(string effect, float volume = 1f) {
     AudioClip clip = soundLibrary.GetClip(effect);
     if(!clip || soundsPlayed>soundLibrary.maxSounds) return;
 
     audioSource.clip = clip;
     audioSource.pitch = 1;
+    audioSource.volume = volume;
     audioSource.PlayOneShot(clip);
 
     soundsPlayed++;
