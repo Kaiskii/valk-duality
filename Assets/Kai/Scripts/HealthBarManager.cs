@@ -26,6 +26,10 @@ public class HealthBarManager : MonoBehaviour {
 
   Queue<IEnumerator> healthChangeQueue = new Queue<IEnumerator>();
 
+  float totalHealthChange = 0f;
+
+  IEnumerator nextHealthChange;
+
   Coroutine currentActive;
 
   private void Awake() {
@@ -34,10 +38,11 @@ public class HealthBarManager : MonoBehaviour {
   }
 
   public void QueueHealthChange(float currentHealth) {
-    healthChangeQueue.Enqueue(LerpToCurrentHealth(currentHealth));
+    totalHealthChange = currentHealth;
+    nextHealthChange = LerpToCurrentHealth(totalHealthChange);
 
     if (currentActive == null)
-      currentActive = StartCoroutine(healthChangeQueue.Dequeue());
+      currentActive = StartCoroutine(nextHealthChange);
   }
 
   public IEnumerator LerpToCurrentHealth(float currentHealth) {
@@ -51,9 +56,12 @@ public class HealthBarManager : MonoBehaviour {
     sliderAmount = currentHealth;
     lerpTimer = 0f;
 
-    if (healthChangeQueue.Count > 0)
-      currentActive = StartCoroutine(healthChangeQueue.Dequeue());
-    else
+    if (nextHealthChange != null) {
+      currentActive = StartCoroutine(nextHealthChange);
+      nextHealthChange = null;
+      totalHealthChange = 0f;
+    } else {
       currentActive = null;
+    }
   }
 }

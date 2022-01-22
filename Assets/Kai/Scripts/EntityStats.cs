@@ -1,6 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
+[System.Serializable]
+public class OnDeathEvent : UnityEvent { }
 
 public class EntityStats : MonoBehaviour {
   public float health = 100f;
@@ -16,6 +20,9 @@ public class EntityStats : MonoBehaviour {
   [SerializeField]
   protected float dashRange = 4f;
 
+  [SerializeField]
+  OnDeathEvent onDeathEvent;
+
   protected virtual void Awake() {
     HealthBarManager.Instance.QueueHealthChange(health / maxHealth);
   }
@@ -23,17 +30,19 @@ public class EntityStats : MonoBehaviour {
 #if UNITY_EDITOR
   protected virtual void Update() {
     if (Input.GetButtonDown("DebugHealthDrop")) {
-      DoTakeDamage(-10f);
-      HealthBarManager.Instance.QueueHealthChange(health / maxHealth);
+      DoTakeDamage(10f);
     }
   }
 #endif
 
   void DoTakeDamage(float value) {
     if (health > 0) {
-      health = Mathf.Clamp(health + value, 0f, 100f);
+      health = Mathf.Clamp(health + value * -1f, 0f, 100f);
     } else {
       health = 100f;
+      onDeathEvent.Invoke();
     }
+
+    HealthBarManager.Instance.QueueHealthChange(health / maxHealth);
   }
 }
