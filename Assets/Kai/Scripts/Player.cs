@@ -6,20 +6,9 @@ using UnityEngine.Events;
 [System.Serializable]
 public class BulletFireEvent : UnityEvent<Vector2> { }
 
-public class Player : MonoBehaviour {
+public class Player : EntityStats {
   [SerializeField]
-  float speed = 15f;
-
-  [SerializeField]
-  float rotate = 10f;
-
-  [SerializeField]
-  float dashSpeed = 10f;
-  [SerializeField]
-  float dashRange = 2f;
-
-  [SerializeField]
-  float afterImageSpacing = 0.01f;
+  float afterImageSpacing = 0.4f;
   float afterImageTimer = 0.01f;
 
   public BulletFireEvent onShoot;
@@ -33,7 +22,13 @@ public class Player : MonoBehaviour {
 
   Vector3 lastMoveDir = Vector2.zero;
 
-  void Update() {
+  protected override void Awake() {
+    base.Awake();
+  }
+
+  protected override void Update() {
+    base.Update();
+
     Move();
     Look();
     Dash();
