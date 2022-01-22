@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: ParticleLibrary
   m_EditorClassIdentifier: 
   particles:
-  - name: Pew
+  - name: PlayerFire
     particle: {fileID: 2910677300556943000, guid: 769abe9254a60e64e95961f097a0b28d, type: 3}
+    rotationOffset: 180
+  - name: EnemyFire
+    particle: {fileID: 3491238750997333211, guid: 711a39eaef7638c41aed954b31fe82f9, type: 3}
     rotationOffset: 180

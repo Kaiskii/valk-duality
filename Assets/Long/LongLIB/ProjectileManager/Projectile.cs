@@ -128,7 +128,7 @@ public class Projectile : MonoBehaviour
 
   public void OnDestroy()
   {
-    ProjectileManager.Instance?.OnProjectileDestroyed(this.gameObject,new ProjectileDestroyedArgs(){projectileID = this.projectileID});
+    ProjectileManager.Instance?.OnProjectileDestroyed(this,new ProjectileDestroyedArgs(){projectileID = this.projectileID});
     gameObject.SetActive(false);
   }
 
@@ -153,7 +153,7 @@ public class Projectile : MonoBehaviour
       transform.Translate(currentDirection*Time.deltaTime*currentSpeed);
     } else if (!targetReached){
       targetReached = true;
-      ProjectileManager.Instance?.OnTargetReached(this.gameObject,new TargetReachedArgs(){projectileID = this.projectileID});
+      ProjectileManager.Instance?.OnTargetReached(this,new ProjectileTargetReachedArgs(){projectileID = this.projectileID});
       if(projectileData.destroyOnTargetReached) {
         OnDestroy();
       }
@@ -198,7 +198,7 @@ public class Projectile : MonoBehaviour
     //Timeout
     if(projectileData.timeout > 0 && (Time.time-startTime) >= projectileData.timeout)
     {
-      ProjectileManager.Instance?.OnProjectileTimeout(this.gameObject,new ProjectileTimeoutArgs(){projectileID = this.projectileID});
+      ProjectileManager.Instance?.OnProjectileTimeout(this,new ProjectileTimeoutArgs(){projectileID = this.projectileID});
       OnDestroy();
     }
   }
@@ -206,7 +206,7 @@ public class Projectile : MonoBehaviour
   // Call when collider hits object
   void OnTriggerEnter2D(Collider2D col)
   {
-      ProjectileManager.Instance?.OnProjectileCollision(this.gameObject,new ProjectileCollisionArgs(){projectileID = this.projectileID,hitObject = col.gameObject});
+      ProjectileManager.Instance?.OnProjectileCollision(this,new ProjectileCollisionArgs(){hitObject = col.gameObject});
       if(projectileData.destroyOnCollision) OnDestroy();
   }
 

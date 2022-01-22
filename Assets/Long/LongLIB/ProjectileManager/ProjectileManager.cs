@@ -10,35 +10,35 @@ public class ProjectileManager : Singleton<ProjectileManager>
   List<Projectile> projectilePool;
 
   //EVENTS
-  public delegate void ProjectileTimeoutHandler(GameObject source,ProjectileTimeoutArgs args);
+  public delegate void ProjectileTimeoutHandler(Projectile source,ProjectileTimeoutArgs args);
   public event ProjectileTimeoutHandler ProjectileTimeout;
-  public void OnProjectileTimeout(GameObject obj,ProjectileTimeoutArgs args){
+  public void OnProjectileTimeout(Projectile self,ProjectileTimeoutArgs args){
     if(ProjectileTimeout != null){
-      ProjectileTimeout(obj,args);
+      ProjectileTimeout(self,args);
     }
   }
 
-  public delegate void TargetReachedHandler(GameObject source,TargetReachedArgs args);
+  public delegate void TargetReachedHandler(Projectile source,ProjectileTargetReachedArgs args);
   public event TargetReachedHandler TargetReached;
-  public void OnTargetReached(GameObject obj,TargetReachedArgs args){
+  public void OnTargetReached(Projectile self,ProjectileTargetReachedArgs args){
     if(TargetReached != null){
-      TargetReached(obj,args);
+      TargetReached(self,args);
     }
   }
 
-  public delegate void ProjectileCollisionHandler(GameObject source,ProjectileCollisionArgs args);
+  public delegate void ProjectileCollisionHandler(Projectile source,ProjectileCollisionArgs args);
   public event ProjectileCollisionHandler ProjectileCollision;
-  public void OnProjectileCollision(GameObject obj,ProjectileCollisionArgs args){
+  public void OnProjectileCollision(Projectile self,ProjectileCollisionArgs args){
     if(ProjectileCollision != null){
-      ProjectileCollision(obj,args);
+      ProjectileCollision(self,args);
     }
   }
 
-  public delegate void ProjectileDestroyedHandler(GameObject source,ProjectileDestroyedArgs args);
+  public delegate void ProjectileDestroyedHandler(Projectile source,ProjectileDestroyedArgs args);
   public event ProjectileDestroyedHandler ProjectileDestroyed;
-  public void OnProjectileDestroyed(GameObject obj,ProjectileDestroyedArgs args){
+  public void OnProjectileDestroyed(Projectile self,ProjectileDestroyedArgs args){
     if(ProjectileDestroyed != null){
-      ProjectileDestroyed(obj,args);
+      ProjectileDestroyed(self,args);
     }
   }
 

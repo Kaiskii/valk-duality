@@ -12,13 +12,12 @@ public class ProjectileTimeoutArgs : EventArgs{
 }
 
 //ProjectileManager.Instance.TargetReached += [Function];
-public class TargetReachedArgs : EventArgs{
+public class ProjectileTargetReachedArgs : EventArgs{
   public int projectileID;
   public GameObject reachedTarget;
 }
 
 //ProjectileManager.Instance.OnCollsion += [Function];
 public class ProjectileCollisionArgs : EventArgs{
-  public int projectileID;
   public GameObject hitObject;
 }
