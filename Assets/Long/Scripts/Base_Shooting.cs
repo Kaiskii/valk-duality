@@ -40,7 +40,7 @@ public class Base_Shooting : MonoBehaviour
     Debug.DrawLine(transform.position,direction+transform.position,Color.cyan,0.5f);
 
     ParticleManager.Instance.CreateParticle(muzzleFlashEffectName,transform.position,direction,this.transform);
-    SoundManager.Instance.Play(fireSFXName);
+    SoundManager.Instance.Play(fireSFXName, 0.5f);
 
     ProjectileManager.Instance.FireProjectile(projectileID,projectileSpawn.position,direction);
   }

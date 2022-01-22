@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -102524876349858939, guid: f9bdd2d4b92fda24f9cdf0a8afdba15e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cf3e172128120494a81630c82a538574, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -95,8 +95,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f17782b18c016594aab4e7f033d4ae23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pTransform: {fileID: 0}
   playerPos: {x: 0, y: 0, z: 0}
   playerRot: {x: 0, y: 0, z: 0, w: 0}
+  finalPos: {x: 0, y: 0, z: 0}
   lifetime: 3
   decayRate: 2
   alphaCurve:
