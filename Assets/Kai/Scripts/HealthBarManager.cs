@@ -8,7 +8,7 @@ public class HealthBarManager : MonoBehaviour {
   EntityStats playerStats;
 
   [SerializeField]
-  Slider healthSlider;
+  public Slider healthSlider;
 
   float sliderAmount = 0f;
 
@@ -22,19 +22,21 @@ public class HealthBarManager : MonoBehaviour {
   [SerializeField]
   AnimationCurve healthCurve;
 
-  public static HealthBarManager Instance;
-
-  Queue<IEnumerator> healthChangeQueue = new Queue<IEnumerator>();
-
   float totalHealthChange = 0f;
 
   IEnumerator nextHealthChange;
 
   Coroutine currentActive;
 
+  public static HealthBarManager Instance;
+
   private void Awake() {
     Instance = this;
-    healthSlider.value = sliderAmount;
+    sliderAmount = 0f;
+  }
+
+  private void Start() {
+    QueueHealthChange(1.0f);
   }
 
   public void QueueHealthChange(float currentHealth) {
@@ -46,6 +48,8 @@ public class HealthBarManager : MonoBehaviour {
   }
 
   public IEnumerator LerpToCurrentHealth(float currentHealth) {
+    GreyBarManager.Instance.TriggerBarChange(currentHealth, sliderAmount);
+
     while (healthSlider.value <= currentHealth - tolerance || healthSlider.value >= currentHealth + tolerance) {
       healthSlider.value = Mathf.Lerp(sliderAmount, currentHealth, healthCurve.Evaluate(lerpTimer));
       lerpTimer += lerpRate * Time.deltaTime;
