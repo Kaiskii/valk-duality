@@ -6,9 +6,6 @@ using UnityEditor;
 public class ParticleLibrary : ScriptableObject
 {
 #if UNITY_EDITOR
-  [SerializeField]
-  List<ParticleAsset> particles;
-
   [MenuItem("LongLib/Create Particle Library")]
   private static void TryGetLibrary()
   {
@@ -27,6 +24,10 @@ public class ParticleLibrary : ScriptableObject
       }
   }
 #endif
+
+  [SerializeField]
+  List<ParticleAsset> particles;
+  
   static Dictionary<string, ParticleAsset> particleDictionary;
 
   [RuntimeInitializeOnLoadMethod]

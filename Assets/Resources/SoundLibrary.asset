@@ -9,14 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8cfad25fb17d7249b99c54667e40f03, type: 3}
+  m_Script: {fileID: 11500000, guid: b4c1d80e674a7c649b03b49a497308c9, type: 3}
   m_Name: SoundLibrary
   m_EditorClassIdentifier: 
-  effectClips:
-  - name: PlayerSlash
-    clip: {fileID: 8300000, guid: 970d44bd7cbeb4d439662600d387746f, type: 3}
-  - name: PlayerShoot
-    clip: {fileID: 8300000, guid: 99c11cc74ced6a54ca7843ebf12cbdc2, type: 3}
-  - name: Hit
-    clip: {fileID: 8300000, guid: 830976341d0c2854b9abee93207a0d80, type: 3}
+  soundCapResetSpeed: 0.55
+  maxSounds: 3
+  effectClips: []
   musicClips: []

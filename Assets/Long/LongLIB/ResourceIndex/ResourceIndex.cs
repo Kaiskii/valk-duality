@@ -145,9 +145,10 @@ public class ResourceIndex : ScriptableObject
     /// <typeparam name="T"></typeparam>
     /// <param name="id"></param>
     /// <returns></returns>
-    public static T GetAsset<T>(int id) where T : Object
+    public static T GetAsset<T>(int id) where T : ScriptableObject
     {
         ResourceAsset asset;
+
         if (assetTypeDictionary.TryGetValue(typeof(T).FullName+"_"+id, out asset))
             return Resources.Load<T>(asset.assetPath);
         return null;
