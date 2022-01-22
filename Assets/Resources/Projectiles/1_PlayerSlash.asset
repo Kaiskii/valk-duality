@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bcc5e40efc482844aaa3b6b1b5e30a5, type: 3}
   m_Name: 1_PlayerSlash
   m_EditorClassIdentifier: 
-  layerName: Default
-  sprite: {fileID: 7482667652216324306, guid: c6f8c0c1800999145aeef31b94fd2066, type: 3}
+  layerName: PlayerProjectile
+  scale: 2.5
+  sprite: {fileID: -2413806693520163455, guid: e0047dac6aeacb64db918bb823f60ac4, type: 3}
+  spriteColor: {r: 1, g: 1, b: 1, a: 0.39215687}
   spriteMode: 0
   attachedEffectReference: {fileID: 0}
   effectOffset: {x: 0, y: 0, z: 0}

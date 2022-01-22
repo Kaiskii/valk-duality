@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: 0_PlayerBullet
   m_EditorClassIdentifier: 
   layerName: PlayerProjectile
-  sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  scale: 0.5
+  sprite: {fileID: -102524876349858939, guid: f9bdd2d4b92fda24f9cdf0a8afdba15e, type: 3}
+  spriteColor: {r: 1, g: 1, b: 1, a: 1}
   spriteMode: 0
   attachedEffectReference: {fileID: 7526684381380691274, guid: 1b84e8ffca7e162479e5727b7b92599e, type: 3}
   effectOffset: {x: 0, y: 0, z: 0}

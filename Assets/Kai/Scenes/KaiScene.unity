@@ -1018,9 +1018,17 @@ PrefabInstance:
       propertyPath: onSlash.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1004216005, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
+      propertyPath: projectileID
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2895426607654213905, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2895426607654213905, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6725996246425997179, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
       propertyPath: m_RootOrder
@@ -1065,6 +1073,18 @@ PrefabInstance:
     - target: {fileID: 6725996246425997179, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799446405527653603, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
+      propertyPath: slashOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8530394158552994887, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8937782496944069849, guid: a9f8a402978b7ba43b874af03750658f, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9f8a402978b7ba43b874af03750658f, type: 3}

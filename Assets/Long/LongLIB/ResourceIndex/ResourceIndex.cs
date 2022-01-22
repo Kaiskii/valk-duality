@@ -127,7 +127,6 @@ public class ResourceIndex : ScriptableObject
         {
             foreach(ResourceAsset asset in resource.assets)
             {
-                Debug.Log("HELLO?? - " + resource.type);
                 assetID = resource.type+"_"+asset.id;
 
                 //Check for duplicates

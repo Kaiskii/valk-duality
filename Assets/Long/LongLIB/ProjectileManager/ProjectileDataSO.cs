@@ -22,7 +22,9 @@ public class ProjectileDataSO : ScriptableObject
   public string layerName = "Default";
 
   [Header("Sprite")]
+  public float scale = 1;
   public Sprite sprite;
+  public Color spriteColor = Color.white;
   public SpriteMode spriteMode;
 
   [Header("Effects")]

@@ -16,6 +16,9 @@ public class Projectile : MonoBehaviour
   [SerializeField] GameObject target;
   [SerializeField] Vector3 targetOffset;
 
+  [Header("Internal Variables")]
+  [SerializeField] Transform effectHolder;
+
   bool targetReached;
   
   Vector3 targetPosition;
@@ -41,24 +44,9 @@ public class Projectile : MonoBehaviour
       return;
     }
 
-    rend = GetComponentInChildren<SpriteRenderer>();
-    rend.sprite = projectileData.sprite;
-
-    col = GetComponentInChildren<CircleCollider2D>();
-
-    if(projectileData.attachedEffectReference)
-    {
-      if(attachedEffects) GameObject.Destroy(attachedEffects);
-      attachedEffects = Instantiate(projectileData.attachedEffectReference,rend.transform.position,rend.transform.rotation);
-      attachedEffects.transform.SetParent(rend.transform);
-      attachedEffects.transform.localPosition = projectileData.effectOffset;
-    }
-
-    if(LayerMask.NameToLayer(projectileData.layerName) != -1){
-      gameObject.layer = LayerMask.NameToLayer(projectileData.layerName);
-    }else{
-      Debug.LogWarning(name + " has invalid LayerName '"+ projectileData.layerName +"'; using Default instead!");
-    }
+    CreateSprite();
+    CreateParticleSystem();
+    CreateCollider();
 
     startTime = Time.time;
 
@@ -72,6 +60,45 @@ public class Projectile : MonoBehaviour
     }
 
     gameObject.SetActive(true);
+  }
+
+  void CreateSprite()
+  {
+    rend = effectHolder.GetComponentInChildren<SpriteRenderer>();
+
+    rend.sprite = projectileData.sprite;
+    rend.color = projectileData.spriteColor;
+    rend.transform.localScale = new Vector2(projectileData.scale,projectileData.scale);
+  }
+
+  void CreateParticleSystem()
+  {
+    if(projectileData.attachedEffectReference)
+    {
+      if(attachedEffects) GameObject.Destroy(attachedEffects);
+      attachedEffects = Instantiate(projectileData.attachedEffectReference,effectHolder.transform.position,effectHolder.transform.rotation);
+      attachedEffects.transform.SetParent(effectHolder);
+      attachedEffects.transform.localPosition = projectileData.effectOffset;
+    }
+  }
+
+  void CreateCollider()
+  {
+    //TODO: Maybe add an enum that lets you choose which collider in the future
+
+    col = GetComponentInChildren<Collider2D>();
+    //Set collider bounds depending what collider it is
+    if(col.GetType() == typeof(CircleCollider2D))
+    {
+      CircleCollider2D thisCollider = GetComponentInChildren<CircleCollider2D>();
+      thisCollider.radius = projectileData.scale/2f;
+    }
+    //Set collider layer
+    if(LayerMask.NameToLayer(projectileData.layerName) != -1){
+      col.gameObject.layer = LayerMask.NameToLayer(projectileData.layerName);
+    }else{
+      Debug.LogWarning(name + " has invalid LayerName '"+ projectileData.layerName +"'; using Default instead!");
+    }
   }
 
   public void SetTarget(Vector3 startDirection, GameObject newTarget, Vector3 offset)
@@ -156,7 +183,7 @@ public class Projectile : MonoBehaviour
     {
       case ProjectileDataSO.SpriteMode.FACE_MOVEMENT_DIRECTION:
         float angle = Mathf.Atan2(currentDirection.y, currentDirection.x) * Mathf.Rad2Deg;
-        rend.transform.rotation = Quaternion.Euler(new Vector3(0,0,angle));
+        effectHolder.transform.rotation = Quaternion.Euler(new Vector3(0,0,angle));
         break;
       case ProjectileDataSO.SpriteMode.FLIP_X:
         rend.flipX = (currentDirection.x+transform.position.x < transform.position.x);
