@@ -7,117 +7,119 @@ public class ResourceIndex : ScriptableObject
 {
     private const string STORAGE_PATH = "Assets/Resources/ResourceIndex";
 
-#if UNITY_EDITOR
-    // add types to be indexed here
-    private static Dictionary<string, System.Type> typesToIndex = new Dictionary<string, System.Type>
-    {
-        /**
-        FORMAT:
-        { "<resource folder path>", typeof(<unityEngine.object>)}
-
-        { "Quests", typeof(QuestSO) },
-        { "Characters", typeof(CharacterSO) },
-
-        etc... any types you want to index
-        */
-
-        {"Projectiles",typeof(ProjectileDataSO)}
-    };
-
-    [MenuItem("LongLib/Create Resource Index")]
-    private static void CreateIndex()
-    {
-        if (!AssetDatabase.IsValidFolder("Assets/Resources"))
+    #if UNITY_EDITOR
+        // add types to be indexed here
+        private static Dictionary<string, System.Type> typesToIndex = new Dictionary<string, System.Type>
         {
-            Debug.Log("No Resource Folder! Creating...");
-            AssetDatabase.CreateFolder("Assets", "Resources");
-        }
-        
-        var index = Resources.Load<ResourceIndex>("ResourceIndex");
-        if (index == null) 
+            /**
+            FORMAT:
+            { "<resource folder path>", typeof(<unityEngine.object>)}
+
+            { "Quests", typeof(QuestSO) },
+            { "Characters", typeof(CharacterSO) },
+
+            etc... any types you want to index
+            */
+
+            {"Projectiles",typeof(ProjectileDataSO)}
+        };
+
+        [MenuItem("LongLib/Create Resource Index")]
+        private static void CreateIndex()
         {
-            Debug.Log("Could not find ResourceIndex! Creating...");
-            index = CreateInstance<ResourceIndex>();
-            UnityEditor.AssetDatabase.CreateAsset(index, STORAGE_PATH + ".asset");
-        }
-
-        index.resources = new List<ResourceType>();
-
-        UpdateIndex();
-    }
-
-    private static void UpdateIndex()
-    {
-        var index = Resources.Load<ResourceIndex>("ResourceIndex");
-
-        if (index == null) return;
-        index.resources.Clear();
-        
-        //POPULATE RESOURCE INDEX
-        foreach (var currentType in typesToIndex)
-        {
-            ResourceType newResourceType;
-            newResourceType.name = currentType.Key;
-            newResourceType.type = currentType.Value;
-            newResourceType.assets = new List<ResourceAsset>();
-
-
-            var all = Resources.LoadAll(currentType.Key, currentType.Value);
-            for (int i = 0; i < all.Length; i++)
+            if (!AssetDatabase.IsValidFolder("Assets/Resources"))
             {
-                // naming convention is id_whateverGoesHere, must be unique
-                Object o = all[i];
-                int id = -1;
-                string[] split = o.name.Split('_');
-                if (int.TryParse(split[0], out id) == false)
+                Debug.Log("No Resource Folder! Creating...");
+                AssetDatabase.CreateFolder("Assets", "Resources");
+            }
+            
+            var index = Resources.Load<ResourceIndex>("ResourceIndex");
+            if (index == null) 
+            {
+                Debug.Log("Could not find ResourceIndex! Creating...");
+                index = CreateInstance<ResourceIndex>();
+                UnityEditor.AssetDatabase.CreateAsset(index, STORAGE_PATH + ".asset");
+            }
+
+            index.resources = new List<ResourceType>();
+
+            UpdateIndex();
+        }
+
+        private static void UpdateIndex()
+        {
+            var index = Resources.Load<ResourceIndex>("ResourceIndex");
+
+            if (index == null) return;
+            index.resources.Clear();
+            
+            //POPULATE RESOURCE INDEX
+            foreach (var currentType in typesToIndex)
+            {
+                ResourceType newResourceType;
+                newResourceType.name = currentType.Key;
+                newResourceType.type = currentType.Value.ToString();
+                newResourceType.assets = new List<ResourceAsset>();
+
+
+                var all = Resources.LoadAll(currentType.Key, currentType.Value);
+                for (int i = 0; i < all.Length; i++)
                 {
-                    Debug.LogErrorFormat("Invalid naming convention for asset {0}", o.name, "! Should be [NumberID_AssetName]");
-                    continue;
+                    // naming convention is id_whateverGoesHere, must be unique
+                    Object o = all[i];
+                    int id = -1;
+                    string[] split = o.name.Split('_');
+                    if (int.TryParse(split[0], out id) == false)
+                    {
+                        Debug.LogErrorFormat("Invalid naming convention for asset {0}", o.name, "! Should be [NumberID_AssetName]");
+                        continue;
+                    }
+
+                    newResourceType.assets.Add(new ResourceAsset()
+                    {
+                        name = split[1],
+                        id = id,
+                        assetPath = GetRelativeResourcePath(UnityEditor.AssetDatabase.GetAssetPath(o)),
+                    });
                 }
 
-                newResourceType.assets.Add(new ResourceAsset()
-                {
-                    name = split[1],
-                    id = id,
-                    assetPath = GetRelativeResourcePath(UnityEditor.AssetDatabase.GetAssetPath(o)),
-                });
+                index.resources.Add(newResourceType);
             }
-
-            index.resources.Add(newResourceType);
         }
-    }
 
-    public static string GetRelativeResourcePath(string path)
-    {
-        System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
-        if (path.Contains("/Resources/"))
+        public static string GetRelativeResourcePath(string path)
         {
-            string[] rSplit = path.Split(new string[] { "/Resources/" }, System.StringSplitOptions.RemoveEmptyEntries);
-            string[] split = rSplit[1].Split('.');
-            for (int j = 0; j < split.Length - 1; j++)
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            if (path.Contains("/Resources/"))
             {
-                stringBuilder.Append(split[j]);
-                if (j < split.Length - 2)
-                    stringBuilder.Append('/');
+                string[] rSplit = path.Split(new string[] { "/Resources/" }, System.StringSplitOptions.RemoveEmptyEntries);
+                string[] split = rSplit[1].Split('.');
+                for (int j = 0; j < split.Length - 1; j++)
+                {
+                    stringBuilder.Append(split[j]);
+                    if (j < split.Length - 2)
+                        stringBuilder.Append('/');
+                }
+                return stringBuilder.ToString();
             }
-            return stringBuilder.ToString();
+            return path;
         }
-        return path;
-    }
-    
-    private void OnValidate()
-    {
-        //if (UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode == false)
-        UpdateIndex();
-    }
+        
+        private void OnValidate()
+        {
+            //if (UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode == false)
+            UpdateIndex();
+        }
 
-#endif
+    #endif
+
     private static Dictionary<string, ResourceAsset> assetTypeDictionary;
 
     [RuntimeInitializeOnLoadMethod]
     private static void Init()
     {
         var index = Resources.Load<ResourceIndex>("ResourceIndex");
+
         assetTypeDictionary = new Dictionary<string, ResourceAsset>();
 
         string assetID = "";
@@ -125,7 +127,8 @@ public class ResourceIndex : ScriptableObject
         {
             foreach(ResourceAsset asset in resource.assets)
             {
-                assetID = resource.type.ToString()+"_"+asset.id;
+                Debug.Log("HELLO?? - " + resource.type);
+                assetID = resource.type+"_"+asset.id;
 
                 //Check for duplicates
                 if (assetTypeDictionary.ContainsKey(assetID))
@@ -148,6 +151,13 @@ public class ResourceIndex : ScriptableObject
     public static T GetAsset<T>(int id) where T : ScriptableObject
     {
         ResourceAsset asset;
+
+        //The ultimate hack, because for some reason typeof(T).FullName doesn't work when compiled
+        /*
+        Debug.Log(ScriptableObject.CreateInstance<T>().GetType().FullName);
+        Debug.Log(typeof(T).FullName);
+        Debug.Log(ScriptableObject.CreateInstance<T>().GetType().ToString());
+        */
 
         if (assetTypeDictionary.TryGetValue(typeof(T).FullName+"_"+id, out asset))
             return Resources.Load<T>(asset.assetPath);
@@ -180,6 +190,7 @@ public class ResourceIndex : ScriptableObject
         return assetList;
     }
 
+    //The individual asset, contained in ResourceType
     [System.Serializable]
     public struct ResourceAsset
     {
@@ -189,12 +200,13 @@ public class ResourceIndex : ScriptableObject
         public string assetPath;
     }
 
+    //The 
     [System.Serializable]
     public struct ResourceType
     {
         [HideInInspector]
         public string name;
-        public System.Type type;
+        public string type;
         public List<ResourceAsset> assets;
     }
     public List<ResourceType> resources;
